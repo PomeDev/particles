@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogury | Demo</title>
     <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/nextparticle-documentation.css'>
-    
+
     <style>
         * {
             margin:0;
@@ -83,11 +83,21 @@
             cursor: pointer;
         }
         
+        .floaters {
+            width:100vw;
+            height:100vh;
+            background:;
+            position:fixed;
+            z-index: -99;
+            top:0px;
+            left:0px;
+        }
 
     </style>
 
 </head>
 <body>
+    <div id="particles-js" class="floaters"></div>
     <header class="header" id="header">
         <h1 class="title">OGURY | Demo</h1>
     </header>
@@ -109,6 +119,7 @@
 
   <script>
   window.onload = function() {
+    
     (function(exports) {
     'use strict';
     
@@ -864,7 +875,7 @@
         initDirection: 'none',
         particleGap: 6,
         color: '#000',
-        noise: .9,
+        noise: 1,
         gravity: .01
     });
     nextParticle.start();
@@ -888,6 +899,20 @@
     // };
 }
   </script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.js"></script>
+  <script>
+particlesJS.load('particles-js', 'particles.js-master/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+  </script> -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+<script type="text/javascript">
+particlesJS.load('particles-js', './assets/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+</script>
+
+
     
 </body>
 </html>
