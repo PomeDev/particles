@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ogury | Demo</title>
-    <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/nextparticle-documentation.css'>
+    <!-- <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/nextparticle-documentation.css'> -->
 
     <style>
         * {
@@ -15,6 +15,17 @@
 
         body {
             background: #fff;
+            height:300vh;
+        }
+        #logo {
+            display: none;
+        }
+
+        canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) ;
         }
 
         header {
@@ -37,11 +48,10 @@
             justify-content:center;
             align-items:center;
             flex-wrap:wrap;
-            /* background:red; */
             position:absolute;
             top:50%;
             left:50%;
-            transform: translateY(-50%) translateX(-50%);
+            transform: translate(-50%, -50%);
         }
 
         .hero-text {
@@ -86,12 +96,26 @@
         .floaters {
             width:100vw;
             height:100vh;
-            background:;
-            position:fixed;
+            position:absolute;
             z-index: -99;
             top:0px;
             left:0px;
         }
+
+        canvas {
+            z-index: -999;
+        }
+
+        .working {
+            animation: rote 180s linear infinite;
+        }
+
+        @keyframes rote {
+            100% {
+                transform: translate(-50%, -50%) rotate(359deg);
+            }
+        }
+       
 
     </style>
 
@@ -105,14 +129,20 @@
         <h2 class="hero-text">Consumers expect choice<br>and control over their digital marketing experience.</h2>
         <h3 class="hero-subtext">Engage mobile users who have made an informed choice.</h3>
         <button class="cta" id="cta">Book a demo to see how</button>
+        <img
+        id="logo"
+        src="assets/circle.png"
+    >
     </div>
 
-    <img
-        id="logo"
-        src="assets/o-circle-2.png"
-    >
-
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/nextparticle-documentation.js'></script>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+    <script type="text/javascript">
+    particlesJS.load('particles-js', './assets/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
+    </script>
+  <!-- <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/23500/nextparticle-documentation.js'></script> -->
   <!-- <script src='https://nextparticle.nextco.de/nextparticle.min.js'></script> -->
   
   <!-- <script src="./script.js"></script> -->
@@ -859,58 +889,33 @@
     }(window));
 
 
-
-
-
-
-
     const nextParticle = new NextParticle({
         image: document.all.logo,
-        addTimestamp: true,
-        width: 1000,
-        height: 1000,
-        minHeight: 900,
-        minWidth: 900,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        maxHeight: 900,
+        maxWidth: 900,
         initPosition: 'none',
         initDirection: 'none',
-        particleGap: 6,
-        color: '#000',
-        noise: 1,
-        gravity: .01
+        particleGap: 2,
+        noise: 5,
+        gravity: .1,
+        // disableInteraction: true
     });
-    nextParticle.start();
-    // window.onresize = function() {
-    //     nextParticle.stop();
-    //     if (window.innerWidth < 600){
-    //         nextParticle.maxWidth = 300;
-    //         nextParticle.maxHeight = 300;
-    //         nextParticle.start();
-    //     } else if (window.innerWidth < 1200) {
-    //         nextParticle.maxWidth = 600;            
-    //         nextParticle.maxHeight = 600;            
-    //         nextParticle.start();
-    //     } else {
-    //         nextParticle.width = 2000;
-    //         nextParticle.maxWidth = 2000;
-    //         nextParticle.maxHeight = 2000;
-    //         nextParticle.start();
-    //     }
-        
-    // };
+    window.onresize = function() {
+        nextParticle.width = window.innerWidth;
+        nextParticle.height = window.innerHeight;
+        nextParticle.start();
+    };
+    setTimeout(function() {
+        const nextCanvas = document.querySelectorAll('canvas')[1]
+        nextCanvas.classList.add('working')
+        console.log(nextCanvas)
+
+    }, 2000)
 }
   </script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.js"></script>
-  <script>
-particlesJS.load('particles-js', 'particles.js-master/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-});
-  </script> -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
-<script type="text/javascript">
-particlesJS.load('particles-js', './assets/particles.json', function() {
-  console.log('callback - particles.js config loaded');
-});
-</script>
+  
 
 
     
